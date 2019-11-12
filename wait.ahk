@@ -13,28 +13,33 @@ wait(byref value, timeout := "", interval := "") {
   else
     interval := 100 ; default value  
 
+  ; Check if value is callable:
   try if (type(value) == "Func" || type(value) == "BoundFunc" || value.hasMethod("Call"))
     funcObj := value
 
+  ; If timeout is specified, determine the end time:
   end := 0
   if (timeout > 0)
     end := A_TickCount + timeout
   loop {
+    ; If value was considered callable, call it:
     if isSet(funcObj)
       val := funcObj.call()
     else
       val := value
     if (val)
-      return val
+      return val ; cannot be falsy
 
+    ; Make sure we never exceed timeout with a sleep:
     if (end && A_TickCount + interval > end) {
       sleep end - A_TickCount
-      return
+      ; If this check is true, there is no point in continuing, so we return:
+      return ; returns empty string
     }
     else {
       sleep interval
     }
     if (end && A_TickCount >= end)
-      return
+      return ; return empty string
   }
 }
