@@ -7,7 +7,7 @@ wait(byref value, timeout := "", interval := "") {
     timeout := 0 ; default value
 
   if (interval != "") {
-    if !(interval != "" && type(interval) == "Integer" && interval >= 0)
+    if !(type(interval) == "Integer" && interval >= 0)
       throw exception("Invalid interval (param #3) specified.", -1)
   }
   else
