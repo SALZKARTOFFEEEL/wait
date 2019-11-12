@@ -1,5 +1,5 @@
 wait(byref value, timeout := -1, interval := 100) {
-  try if !(timeout is "number")
+  try if !(timeout && type(timeout) == "Integer")
     throw exception("Invalid timeout (param #2) specified.", -1)
   catch
     throw exception("Invalid timeout (param #2) specified.", -1)
