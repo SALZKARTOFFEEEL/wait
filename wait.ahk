@@ -36,9 +36,9 @@ wait(byref value, timeout := "", interval := "") {
       ; If this check is true, there is no point in continuing, so we return:
       return ; returns empty string
     }
-    else {
+    else
       sleep interval
-    }
+
     if (end && A_TickCount >= end)
       return ; return empty string
   }
