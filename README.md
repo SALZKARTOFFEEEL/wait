@@ -1,6 +1,6 @@
 # `wait`
-Waits for a value to become true or a function to return true.
-Emulates `WinWait` and similar but supports any kind of check.
+Waits for a value to become true or a function to return true.  
+Emulates built-in `WinWait`, `KeyWait`, etc. but supports any kind of check.
 
 ## Definition
 ```autohotkey
