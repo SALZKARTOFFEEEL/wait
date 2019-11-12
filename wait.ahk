@@ -18,7 +18,6 @@ wait(byref value, timeout := "", interval := "") {
     funcObj := value
 
   ; If timeout is specified, determine the end time:
-  end := 0
   if (timeout > 0)
     end := A_TickCount + timeout
   loop {
@@ -31,7 +30,7 @@ wait(byref value, timeout := "", interval := "") {
       return val ; cannot be falsy
 
     ; Make sure we never exceed timeout with a sleep:
-    if (end && A_TickCount + interval > end) {
+    if (isSet(end) && A_TickCount + interval > end) {
       sleep end - A_TickCount
       ; If this check is true, there is no point in continuing, so we return:
       return ; returns empty string
@@ -39,7 +38,7 @@ wait(byref value, timeout := "", interval := "") {
     else
       sleep interval
 
-    if (end && A_TickCount >= end)
+    if (isSet(end) && A_TickCount >= end)
       return ; return empty string
   }
 }
