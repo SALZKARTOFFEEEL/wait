@@ -1,13 +1,17 @@
-wait(byref value, timeout := -1, interval := 100) {
-  try if !(timeout && type(timeout) == "Integer")
-    throw exception("Invalid timeout (param #2) specified.", -1)
-  catch
-    throw exception("Invalid timeout (param #2) specified.", -1)
+wait(byref value, timeout := "", interval := "") {
+  if (timeout != "") {
+    if !(type(timeout) == "Integer" && timeout >= 0)
+      throw exception("Invalid timeout (param #2) specified.", -1)
+  }
+  else
+    timeout := 0 ; default value
 
-  try if !(interval && type(interval) == "Integer" && interval >= 0)
-    throw exception("Invalid interval (param #3) specified.", -1)
-  catch
-    throw exception("Invalid interval (param #3) specified.", -1)
+  if (interval != "") {
+    if !(interval != "" && type(interval) == "Integer" && interval >= 0)
+      throw exception("Invalid interval (param #3) specified.", -1)
+  }
+  else
+    interval := 100 ; default value  
 
   try if (type(value) == "Func" || type(value) == "BoundFunc" || value.hasMethod("Call"))
     funcObj := value
