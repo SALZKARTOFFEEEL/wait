@@ -38,6 +38,7 @@ wait(byref value, timeout := "", interval := "") {
     else
       sleep interval
 
+    ; timeout has been exceeded:
     if (isSet(end) && A_TickCount >= end)
       return ; return empty string
   }
