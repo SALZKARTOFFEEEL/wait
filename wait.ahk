@@ -14,7 +14,11 @@ wait(byref value, timeout := "", interval := "") {
     interval := 100 ; default value  
 
   ; Check if value is callable:
-  try if (type(value) == "Func" || type(value) == "BoundFunc" || value.hasMethod("Call"))
+  try if (
+    type(value) == "Func" ||
+    type(value) == "BoundFunc" ||
+    value.hasMethod("Call")
+  )
     funcObj := value
 
   ; If timeout is specified, determine the end time:
