@@ -24,12 +24,14 @@ wait(byref value, timeout := "", interval := "") {
   ; If timeout is specified, determine the end time:
   if (timeout > 0)
     end := A_TickCount + timeout
+    
   loop {
     ; If value was considered callable, call it:
     if isSet(funcObj)
       val := funcObj.call()
     else
       val := value
+
     if (val)
       return val ; cannot be falsy
 
