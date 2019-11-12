@@ -4,26 +4,22 @@ Emulates built-in `WinWait`, `KeyWait`, etc. but supports any kind of check.
 
 ## Definition
 ```autohotkey
-info := wait(value, timeout := -1, interval := 100)
+ret := wait(value, timeout := -1, interval := 100)
 ```
 * `value`: The value continuously checked
 or the function whose return value is continuously checked.
+  * `value` is being called (used as a function),
+  [if it is considered callable](#Remarks).
 * `timeout` – _integer_: Number of milliseconds to wait for at most.
 * `interval` – _integer_: Number of milliseconds to wait before retrying.
-* `info` – _object_: The return object.
-Can have the following two properties:
-  * `val`[⁽¹⁾](#remarks):
-    * The return value of the last call to `value`,
-    if `value` is considered callable[⁽²⁾](#remarks),
-    * `value` itself, otherwise.
-  * `condition`:
-    * `"timeout"` if the `timeout` being reached caused `wait` to terminate.
-    * `"true"`: if `wait` was terminated because value evaluated to `true`.
+* `ret`: The return value.
+  * If `timeout` was reached, `ret` is an empty string.
+  * Otherwise (if `value` became true), `ret` is
+  `value` itself if it is not callable[⁽¹⁾](#Remarks), or otherwise
+  the return value of the last call to `value.call()`.
 
 #### Remarks
-1.  `info.val` is present only if `info.condition` is `"true"`
-
-2. `value` is considered callable when either of these conditions is met:
+1. `value` is considered callable when either of these conditions is met:
   * `type(value) == "Func"` – `value` is a [Func Object](https://lexikos.github.io/v2/docs/objects/Func.htm).
   * `type(value) == "BoundFunc` – `value` is a [BoundFunc Object](https://lexikos.github.io/v2/docs/objects/Functor.htm#BoundFunc).
   * `value.hasMethod("Call")` – `value` is a [Functor](https://lexikos.github.io/v2/docs/objects/Functor.htm) or any other object that implements a `Call` method.
