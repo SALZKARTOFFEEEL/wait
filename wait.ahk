@@ -4,7 +4,7 @@ wait(byref value, timeout := -1, interval := 100) {
   catch
     throw exception("Invalid timeout (param #2) specified.", -1)
 
-  try if !(interval && type(interval) == "Integer" && interval >= 1)
+  try if !(interval && type(interval) == "Integer" && interval >= 0)
     throw exception("Invalid interval (param #3) specified.", -1)
   catch
     throw exception("Invalid interval (param #3) specified.", -1)
