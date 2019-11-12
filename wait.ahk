@@ -9,7 +9,7 @@ wait(byref value, timeout := -1, interval := 100) {
   catch
     throw exception("Invalid interval (param #3) specified.", -1)
 
-  try if (type(value) == "Func" || type(value) == "BoundFunc" || value.hasOwnMethod("Call"))
+  try if (type(value) == "Func" || type(value) == "BoundFunc" || value.hasMethod("Call"))
     funcObj := value
 
   end := 0
