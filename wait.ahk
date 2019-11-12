@@ -21,7 +21,7 @@ wait(byref value, timeout := -1, interval := 100) {
     else
       val := value
     if (val)
-      return {"value": val, "condition": "true"}
+      return {"val": val, "condition": "true"}
 
     if (end && A_TickCount + interval > end) {
       sleep end - A_TickCount
