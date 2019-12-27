@@ -11,7 +11,10 @@ or the function whose return value is continuously checked.
   * `value` is being called (used as a function),
   [if it is considered callable](#Remarks).
 * `timeout` – _integer_: Number of milliseconds to wait for at most.
+`0` (the default) will cause it to wait indefinitely.
 * `interval` – _integer_: Number of milliseconds to wait before retrying.
+`100` is the default.
+Specifying `0` is valid and causes a [`Sleep 0`](https://lexikos.github.io/v2/docs/commands/Sleep.htm#Remarks).
 * `ret`: The return value.
   * If `timeout` was reached, `ret` is an empty string.
   * Otherwise (if `value` became true), `ret` is
