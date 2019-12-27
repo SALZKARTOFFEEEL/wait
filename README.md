@@ -8,30 +8,30 @@ ret := wait(value, timeout := 0, interval := 100)
 ```
 * `value`: The value continuously checked
 or the function whose return value is continuously checked.
-  * `value` is being called (used as a function),
-  [if it is considered callable](#Remarks).
+    * `value` is being called (used as a function),
+    [if it is considered callable](#Remarks).
 * `timeout` – _integer_: Number of milliseconds to wait for at most.
 `0` (the default) will cause it to wait indefinitely.
 * `interval` – _integer_: Number of milliseconds to wait before retrying.
 `100` is the default.
 Specifying `0` is valid and causes a [`Sleep 0`](https://lexikos.github.io/v2/docs/commands/Sleep.htm#Remarks).
 * `ret`: The return value.
-  * If `timeout` was reached, `ret` is an empty string.
-  * Otherwise (if `value` became true), `ret` is
-  `value` itself if it is not callable[⁽¹⁾](#Remarks), or otherwise
-  the return value of the last call to `value.call()`.
+    * If `timeout` was reached, `ret` is an empty string.
+    * Otherwise (if `value` became true), `ret` is
+    `value` itself if it is not callable[⁽¹⁾](#Remarks), or otherwise
+    the return value of the last call to `value.call()`.
 
 #### Remarks
 1. `value` is considered callable when either of these conditions is met:
-  * `type(value) == "Func"` – `value` is a [Func Object](https://lexikos.github.io/v2/docs/objects/Func.htm).
-  * `type(value) == "BoundFunc"` – `value` is a [BoundFunc Object](https://lexikos.github.io/v2/docs/objects/Functor.htm#BoundFunc).
-  * `value.hasMethod("Call")` – `value` is a [Functor](https://lexikos.github.io/v2/docs/objects/Functor.htm) or any other object that implements a `Call` method.
+    * `type(value) == "Func"` – `value` is a [Func Object](https://lexikos.github.io/v2/docs/objects/Func.htm).
+    * `type(value) == "BoundFunc"` – `value` is a [BoundFunc Object](https://lexikos.github.io/v2/docs/objects/Functor.htm#BoundFunc).
+    * `value.hasMethod("Call")` – `value` is a [Functor](https://lexikos.github.io/v2/docs/objects/Functor.htm) or any other object that implements a `Call` method.
 
-  These conditions are tested for in the order specified above,
-  with short-circuit evaluation.
-  If either test throws an exception
-  (though only the last one is expected to do so),
-  `value` is considered not callable.
+    These conditions are tested for in the order specified above,
+    with short-circuit evaluation.
+    If either test throws an exception
+    (though only the last one is expected to do so),
+    `value` is considered not callable.
 
 
 ## Examples
