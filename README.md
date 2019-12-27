@@ -4,7 +4,7 @@ Emulates built-in `WinWait`, `KeyWait`, etc. but supports any kind of check.
 
 ## Definition
 ```autohotkey
-ret := wait(value, timeout := -1, interval := 100)
+ret := wait(value, timeout := 0, interval := 100)
 ```
 * `value`: The value continuously checked
 or the function whose return value is continuously checked.
@@ -21,7 +21,7 @@ or the function whose return value is continuously checked.
 #### Remarks
 1. `value` is considered callable when either of these conditions is met:
   * `type(value) == "Func"` – `value` is a [Func Object](https://lexikos.github.io/v2/docs/objects/Func.htm).
-  * `type(value) == "BoundFunc` – `value` is a [BoundFunc Object](https://lexikos.github.io/v2/docs/objects/Functor.htm#BoundFunc).
+  * `type(value) == "BoundFunc"` – `value` is a [BoundFunc Object](https://lexikos.github.io/v2/docs/objects/Functor.htm#BoundFunc).
   * `value.hasMethod("Call")` – `value` is a [Functor](https://lexikos.github.io/v2/docs/objects/Functor.htm) or any other object that implements a `Call` method.
 
   These conditions are tested for in the order specified above,
