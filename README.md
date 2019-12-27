@@ -33,6 +33,10 @@ Specifying `0` is valid and causes a [`Sleep 0`](https://lexikos.github.io/v2/do
     (though only the last one is expected to do so),
     `value` is considered not callable.
 
+2. `wait` is able to throw an exception if the input arguments are invalid.
+`timeout` and `interval` must both be a _pure Integer_ and be `0` or greater.
+Any other exception is unintended and should be reported. Thank you!
+
 
 ## Examples
 ```autohotkey
